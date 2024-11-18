@@ -3,6 +3,6 @@
 
 
 # Colaboradores
-Zahnia Lucero Cota
-Roberto Vega Hernández
-Karim Dasaev Wence Landin
+Zahnia Lucero Cota  
+Roberto Vega Hernández  
+Karim Dasaev Wence Landin  
