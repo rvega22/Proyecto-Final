@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Detalles del producto</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="/Examen_CSS/public/assets/css/style.css">
         <script src="https://kit.fontawesome.com/fe8d3f6ced.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
