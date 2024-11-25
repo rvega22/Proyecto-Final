@@ -1,3 +1,9 @@
+<?php
+require __DIR__.'../../src/helpers/functions.php';
+$product = getProductData(1); // Busca el producto con ID 1
+print_r($product);
+$products = getProducts()
+?>
 <!DOCTYPE html>
 <html lang="Es">
     <head>
@@ -13,9 +19,8 @@
     <body class="body">
         
         <?php
-            require '../src/config/database.php';
             include_once '../src/views/layouts/header.php';
-            getPDO();
+            
         ?>
 
         <main>
@@ -28,7 +33,6 @@
                 </div>
                 
                 <div class="ofertas_info">
-                    <div class="cuadro_decoracion"></div>
                     <img class="imagen_main" src="assets/img/imagen_main.png" alt="Imagen Joven con lentes de sol">
                 </div>
             </div>
@@ -49,6 +53,13 @@
                 <a href="#" class="button_base" id="button_info">Ver más</a>
             </div>
         </div>
+
+        <ul class="submenu">
+            <?php foreach($products as $product): ?>
+            <li><a href="<?=BASE_URL?>/../src/views/products/details.php?product=<?=$product['name']?>"></a></li>
+            <?php endforeach; ?>
+    
+        </ul>
 
         <?php
             include_once '../src/views/layouts/footer.php';

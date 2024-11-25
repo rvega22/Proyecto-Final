@@ -1,7 +1,8 @@
 
  /*Variables*/ 
  :root {
-    --primary-color: rgb(73 114 172);
+    --primary-color: #4972ac;
+    --background-color-main: #2F68BB;
     --secondary-color: rgb(23 20 73);
     --primary-color-of-letters: rgb(242, 242, 242);
     --padding: 3%;
@@ -32,7 +33,7 @@ a {
 }
 
 .body {
-    background-color: var(--primary-color);
+    background-color: var(--background-color-main);
     margin: 0%;
 }
 
@@ -149,15 +150,6 @@ main {
 
 }
 
-.cuadro_decoracion {
-    margin-left: calc(var(--margin-left) - 18%);
-    margin-top: var(--margin-top);
-    background-color: rgb(252, 255, 252);
-    height: 400px;
-    width: 5%;
-    position: absolute;
-    z-index: 10;
-}
 
 .ofertas_info {
     margin-left: calc(var(--margin-left) - 17%);
@@ -294,13 +286,13 @@ li:hover .submenu{
 }
 
 .bloque:nth-child(1) {
-    background-image: url('img/Imagen_fondo_lentes_1.png'); 
+    background-image: url('../img/Imagen_fondo_lentes_1.png'); 
     background-color: rgba(0, 0, 0, 0.4);
     background-blend-mode: darken;
 }
 
 .bloque:nth-child(2) {
-    background-image: url('img/Imagen_fondo_lentes_2.png'); 
+    background-image: url('../img/Imagen_fondo_lentes_2.png'); 
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: darken;
 }
