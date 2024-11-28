@@ -1,27 +1,8 @@
-<?php
-require __DIR__.'../../src/helpers/functions.php';
-$product = getProductData(1); // Busca el producto con ID 1
-print_r($product);
-$products = getProducts()
-?>
-<!DOCTYPE html>
-<html lang="Es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Spectralook</title>
-        <link rel="stylesheet" href="assets/css/style.css">
-        <script src="https://kit.fontawesome.com/fe8d3f6ced.js" crossorigin="anonymous"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    </head>
-
-    <body class="body">
-        
         <?php
             include_once '../src/views/layouts/header.php';
             
         ?>
+
 
         <main>
             <div class="box_main">

@@ -2,7 +2,7 @@
 <html lang="Es">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="public/assets/css/style.css">
     <title>Login SpectraLook</title>
     <script src="https://kit.fontawesome.com/fe8d3f6ced.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">

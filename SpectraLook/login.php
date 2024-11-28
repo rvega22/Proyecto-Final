@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body class="gradiante_login">
-    <a class="return" href="index.html"><i class="fa-solid fa-right-to-bracket"></i></a>
+    <a class="return" href="public/index.php"><i class="fa-solid fa-right-to-bracket"></i></a>
     
     <main class="contenedor_login">
         <div class="logo_login">
@@ -29,7 +29,7 @@
 
         <div class="form_group">
             <label for="email"></label>
-                <input 
+                <input class="input_login"
                 type="email"
                 id="email"
                 name="email"
@@ -43,7 +43,7 @@
 
         <div class="form_group">
             <label for="Contraseña"></label>
-                <input 
+                <input class="input_login"
                 type="password"
                 id="Contraseña"
                 name="Contraseña"
@@ -59,6 +59,6 @@
             <a href="cuestionario.html">Sign in</a>
         </div>
     </main>
-    <br><br><br><br><br>
+    <br><br>
 </body>
 </html>
