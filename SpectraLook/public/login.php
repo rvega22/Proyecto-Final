@@ -1,9 +1,12 @@
+<?php
+require_once __DIR__.'/../src/helpers/functions.php';
+?>
 <!DOCTYPE html>
 <html lang="Es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<?=ASSETS_URL?>/css/style.css">
     <title>Login SpectraLook</title>
     <script src="https://kit.fontawesome.com/fe8d3f6ced.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body class="gradiante_login">
-    <a class="return" href="public/index.php"><i class="fa-solid fa-right-to-bracket"></i></a>
+    <a class="return" href="index.php"><i class="fa-solid fa-right-to-bracket"></i></a>
     
     <main class="contenedor_login">
         <div class="logo_login">
@@ -56,7 +59,7 @@
 
         <div class="extra_links">
             <a href="#">Forgot your user password?</a>
-            <a href="cuestionario.html">Sign in</a>
+            <a href="registro.php">Sign in</a>
         </div>
     </main>
     <br><br>

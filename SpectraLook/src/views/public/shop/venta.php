@@ -10,6 +10,6 @@
         include_once '../src/views/layouts/footer.php';
     ?>
 
-  <script src="index.js"></script>
+  <script src="<?= JS_URL ?>/index.js"></script>
 </body>
 </html>

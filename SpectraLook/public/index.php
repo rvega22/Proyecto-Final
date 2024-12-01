@@ -35,13 +35,6 @@
             </div>
         </div>
 
-        <ul class="submenu">
-            <?php foreach($products as $product): ?>
-            <li><a href="<?=BASE_URL?>/../src/views/products/details.php?product=<?=$product['name']?>"></a></li>
-            <?php endforeach; ?>
-    
-        </ul>
-
         <?php
             include_once '../src/views/layouts/footer.php';
         ?>

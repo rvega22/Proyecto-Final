@@ -1,5 +1,5 @@
   <?php
-    include_once '../src/views/layouts/header.php';
+    include_once '../../layouts/header.php';
             
   ?>
 
@@ -24,12 +24,14 @@
     </div>
   </div>
 
-  </main>
+
 
   <?php
-    include_once '../src/views/layouts/footer.php';
+    include_once '../../layouts/footer.php';
   ?>
 
-<script src="index.js"></script>
+  
+
+<script src="<?= JS_URL ?>/index.js"></script>
 </body>
 </html>
