@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="bloque_footer">
-        <a id="margin_footer_img" href="#"><i class="fa-solid fa-glasses"></i></a>
-        <h1 id="margin_footer_text">SpectraLook</h1>
+        <a id="margin_footer_img" href="<?= BASE_URL ?>/../src/views/public/welcome.php"><i class="fa-solid fa-glasses"></i></a>
+        <h1  id="margin_footer_text"><a href="<?= BASE_URL ?>/../src/views/public/welcome.php">SpectraLook</a></h1>
     </div>
 
     <div class="bloque_texto">

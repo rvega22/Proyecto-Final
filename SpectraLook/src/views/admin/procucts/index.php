@@ -1,5 +1,5 @@
 <?php
-    include_once '../src/views/layouts/header.php';
+    include_once '../../layouts/header.php';
             
 ?>
 
@@ -42,7 +42,7 @@
 </div>
 
 <?php
-    include_once '../src/views/layouts/footer.php';
+    include_once '../../layouts/footer.php';
 ?>
 
  <script src="<?= JS_URL ?>/indexAdmin.js"></script>

@@ -56,19 +56,21 @@
      <!-- Promocion img,p -->
      <div class="promo-container">
         <div class="promo-image-wrapper">
-            <img class="img-promo" src="img/img-promo.jpg" alt="Promoción">  
-            <img class="promo-tag" src="img/Imagen_rebajas.png" alt="Etiqueta de descuento">
+            <img class="img-promo" src="<?=ASSETS_URL?>/img/img-promo.jpg" alt="Promoción">  
+            <img class="promo-tag" src="<?=ASSETS_URL?>/img/Imagen_rebajas.png" alt="Etiqueta de descuento">
             <p class="promo-text">Aprovecha las ofertas excepcionales en nuestros mejores lentes para este regreso a clases.</p>
         </div>
     </div>
+    
+    <br><br><br><br>
     
     <?php
         include_once '../../layouts/recomendation.php';
     ?>
 
-    <script src="<?= JS_URL ?>/index.js"></script>
     <?php
         include_once '../../layouts/footer.php';
     ?>
+    <script src="<?= JS_URL ?>/index.js"></script>
 </body>
 </html>
