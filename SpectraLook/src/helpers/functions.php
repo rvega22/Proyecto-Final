@@ -25,14 +25,14 @@
             }
 
             //Se convierte a JSON y se agrega al archivo
-            file_put_contents(CAREERS_CACHE_FILE, json_encode($products));
+            file_put_contents(PRODUCTS_CACHE_FILE, json_encode($products));
         } catch (PDOException $e) {
             error_log("Error al consultar la base de datos: " . $e->getMessage());
         }
 
     }
 
-    function get_careers_from_cache()
+    function get_products_from_cache()
     {
         $products = [];
 
@@ -41,7 +41,7 @@
         }
 
         if(count($products) == 0){
-            cache_careers();
+            cache_products();
         }
 
         return json_decode(file_get_contents(PRODUCTS_CACHE_FILE), true);

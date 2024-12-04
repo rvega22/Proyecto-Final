@@ -1,0 +1,64 @@
+:root {
+    --primary-color: rgb(73 114 172);
+    --secondary-color: rgb(23 20 73);
+    --primary-color-of-letters: rgb(242, 242, 242);
+    --padding: 3%;
+    --border-radius: 10px;
+    --secondary-color-of-letters: black;
+    --font-family: Raleway, sans-serif;
+    --display: flex;
+    --margin-top: 5%;
+    --margin-left: 20%;
+    --alineacion: center;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--primary-color);
+    color: var(--primary-color-of-letters);
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 4rem;
+    margin: 0;
+    color: var(--secondary-color-of-letters);
+}
+
+p {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color-of-letters);
+    background-color: var(--secondary-color);
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: var(--primary-color-of-letters);
+    color: var(--secondary-color-of-letters);
+    margin-top: 5%;
+}
+
+.image-container {
+    margin: 2rem 0;
+}
+
+.image-container img {
+    width: 150px;
+    height: auto;
+}

@@ -1,5 +1,5 @@
   <?php
-    include_once '../../layouts/header.php';
+    include_once __DIR__.'/../../layouts/header.php';
             
   ?>
 
@@ -18,7 +18,7 @@
       <h2>Resumen del Pedido</h2>
       <p>Total: $<span id="cart-total">0.00</span></p>
       <div class="cart-buttons">
-        <a href="../welcome.php" class="continue-shopping-button">Seguir comprando</a>
+        <a href="<?=BASE_URL?>/../src/views/public/welcome.php" class="continue-shopping-button">Seguir comprando</a>
         <button  class="checkout-button" onclick="checkout()">Pagar</button>
       </div>
     </div>
@@ -27,7 +27,7 @@
 
 
   <?php
-    include_once '../../layouts/footer.php';
+    include_once __DIR__. '/../../layouts/footer.php';
   ?>
 
   

@@ -1,5 +1,5 @@
         <?php
-            include_once '../layouts/header.php';
+            include_once __DIR__ . '/../layouts/header.php';
             
         ?>
 
@@ -20,12 +20,12 @@
         </main>
     
         <?php
-            include_once '../layouts/recomendation.php';
+            include_once __DIR__ . '/../layouts/recomendation.php';
         ?>
         <br><br><br><br>
 
         <?php
-            include_once '../layouts/catalog.php';
+            include_once __DIR__ . '/../layouts/catalog.php';
         ?>
 
         <div class="seccion_imagenes">

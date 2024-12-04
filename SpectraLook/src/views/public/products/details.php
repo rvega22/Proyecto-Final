@@ -1,9 +1,9 @@
     <?php
-        include_once '../../layouts/header.php';
+        include_once __DIR__.'/../../layouts/header.php';
     ?>
 
     <nav class="breadcrumbs">
-        <a href="index.html"><i class="fa-solid fa-house"></i> Inicio /</a> 
+        <a href="<?=BASE_URL?>/../src/views/public/welcome.php"><i class="fa-solid fa-house"></i> Inicio /</a> 
         <span><i></i>Detalles del producto</span>
     </nav>
 
@@ -65,11 +65,11 @@
     <br><br><br><br>
     
     <?php
-        include_once '../../layouts/recomendation.php';
+        include_once __DIR__. '/../../layouts/recomendation.php';
     ?>
 
     <?php
-        include_once '../../layouts/footer.php';
+        include_once __DIR__.'/../../layouts/footer.php';
     ?>
     <script src="<?= JS_URL ?>/index.js"></script>
 </body>

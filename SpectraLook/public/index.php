@@ -22,11 +22,6 @@ switch ($request) {
         require_once __DIR__ . '/../src/views/public/shop/shopping_cart.php';
         break;
 
-    // Ruta para la página de ventas
-    case '/shop/sale':
-        require_once __DIR__ . '/../src/views/public/shop/venta.php';
-        break;
-
     // Detalles de productos
     case '/products/details':
         require_once __DIR__ . '/../src/views/public/products/details.php';
@@ -55,6 +50,6 @@ switch ($request) {
     default:
         http_response_code(404);
         // Puedes agregar una vista personalizada para 404
-        echo '404 - Página no encontrada';
+        require_once __DIR__ . '/../src/views/public/not_found/not_found.php';
         break;
 }
