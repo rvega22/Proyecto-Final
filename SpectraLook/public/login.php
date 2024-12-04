@@ -7,7 +7,7 @@ require_once __DIR__.'/../src/helpers/functions.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?=ASSETS_URL?>/css/style.css">
-    <title>Login SpectraLook</title>
+    <title>Registrarse SpectraLook</title>
     <script src="https://kit.fontawesome.com/fe8d3f6ced.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,8 +58,8 @@ require_once __DIR__.'/../src/helpers/functions.php';
         </div>
 
         <div class="extra_links">
-            <a href="#">Forgot your user password?</a>
-            <a href="sign_in.php">Sign in</a>
+            <a href="#">¿Olvido su contraseña?</a>
+            <a href="sign_up.php">Crear cuenta</a>
         </div>
     </main>
     <br><br>

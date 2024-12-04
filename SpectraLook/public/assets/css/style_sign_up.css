@@ -1,0 +1,161 @@
+/*Variables*/ 
+:root {
+    --primary-color: rgb(73 114 172);
+    --secondary-color: rgb(23 20 73);
+    --primary-color-of-letters: rgb(242, 242, 242);
+    --padding: 3%;
+    --border-radius: 10px;
+    --secondary-color-of-letters: black;
+    --font-family: Raleway;
+    --display: flex;
+    --margin-top: 5%;
+    --margin-left: 20%;
+    --alineacion: center;
+}
+
+/* CSS del login */
+body-login {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.gradiante_login {
+    background-color: rgb(54, 93, 165);
+}
+
+.login-container {
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    overflow: hidden;
+    flex-direction: row;
+    transition: all 0.3s ease;
+}
+
+.login-image {
+    flex: 1;
+}
+
+.login-image .img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contenedor_login {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 70%;
+    margin-top: 2%;
+    margin-left: 15%;
+    flex-wrap: wrap;
+    background-color: #4358a1;
+    border-radius: 10px;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Raleway', sans-serif;
+}
+
+.letra_login {
+    font-size: 400%;
+    text-align: center;
+}
+
+.login-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+input {
+    background: rgb(19, 49, 92);
+    color: rgb(255, 255, 255);
+    width: 100%;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+input.error {
+    border-color: red;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #060606;
+    font-weight: bold;
+}
+
+.button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4358a1;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button_cancel {
+    width: 100%;
+    padding: 12px;
+    background-color: #db2114;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 3%;
+}
+
+.button:hover {
+    background-color: #35396e;
+}
+
+.return {
+    font-size: 250%;
+}
+
+.extra_links a {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-top: 8%;
+    width: 100%;
+}
+
+.extra_links a:hover {
+    text-decoration: underline;
+    color: #2850d6;
+}

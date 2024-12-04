@@ -8,7 +8,7 @@ $request = strtok($request, '?');
 // Switch para manejar las rutas
 switch ($request) {
     // Página de inicio
-    case '/':
+    case '/Proyecto-Final/SpectraLook/':
         require_once __DIR__ . '/../src/views/public/welcome.php';
         break;
 
@@ -28,11 +28,11 @@ switch ($request) {
         break;
 
     // Login y registro
-    case '/login':
+    case '/public/login':
         require_once __DIR__ . '/login.php';
         break;
 
-    case '/register':
+    case '/public/register':
         require_once __DIR__ . '/registro.php';
         break;
 
@@ -48,7 +48,6 @@ switch ($request) {
 
     // Página no encontrada
     default:
-        http_response_code(404);
         // Puedes agregar una vista personalizada para 404
         require_once __DIR__ . '/../src/views/public/not_found/not_found.php';
         break;

@@ -41,7 +41,7 @@
         </div>
 
         <?php
-            include_once '../layouts/footer.php';
+            include_once __DIR__ . '/../layouts/footer.php';
         ?>
     </body>
 </html>
