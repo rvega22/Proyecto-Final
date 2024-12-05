@@ -11,6 +11,7 @@
         session_start();
     }
 
+    #region Productos
     function cache_products() 
     {
         $pdo = getPDO();
@@ -36,7 +37,7 @@
     {
         $products = [];
 
-        if (file_exists(CAREERS_CACHE_FILE)) {
+        if (file_exists(PRODUCTS_CACHE_FILE)) {
             $products = json_decode(file_get_contents(PRODUCTS_CACHE_FILE), true);
         }
 
@@ -65,7 +66,7 @@
         }
     }
 
-    function getProductData($productId = null) 
+    function getProductData($productId) 
     {
         // Si no se pasa el ID del producto como argumento, intenta obtenerlo de la URL ($_GET)
         if ($productId === null && isset($_GET['id'])) {
@@ -95,6 +96,143 @@
             return [];
         }
     }
+    #endregion
+
+    #region Usuarios
+    function getUsers() 
+    {
+        $pdo = getPDO();
+
+        try {
+            // Consulta para obtener todos los usuarios
+            $sql = "SELECT id, name, phone_number, email FROM users";
+            $stmt = $pdo->query($sql);
+            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $users;
+        } catch (PDOException $e) {
+            error_log("Error al consultar los usuarios: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    function deleteUsers($userId) {
+        $pdo = getPDO();
+
+        try {
+            //Consulta para borrar un usuario usando su id
+            $sql = "DELETE FROM users WHERE users.id = $userId";
+            $stmt = $pdo->query($sql);
+        } catch (PDOException $e) {
+            error_log("Error al eliminar el usuario: " . $e->getMessage());
+        }
+    }
+
+    function updateUser($userId, $name, $phone_number, $email) {
+        $pdo = getPDO();
+
+        try {
+            //Consulta para editar un usuario usando su id
+            $sql = "UPDATE users SET name='$name', phone_number = '$phone_number', email = '$password' users WHERE users.id = $userId";
+            $stmt = $pdo->query($sql);
+        } catch (PDOException $e) {
+            error_log("Error al actualizar al usuario: " . $e->getMessage());
+        }
+    }
+
+    function createUser($name, $phone_number, $email, $password) {
+        $pdo = getPDO();
+        $encryp_password = password_hash($password, PASSWORD_DEFAULT);
+        try {
+            $sql = "INSERT INTO users (name, phone_number, email, password) VALUES '$name', '$phone_number', '$email', '$encryp_password'";
+            $stmt = $pdo->query($sql);
+        } catch (PDOException $e) {
+            error_log("Error al crear usuario: " . $e->getMessage());
+        }
+    }
+    #endregion
+
+    #region Carrito
+    function createCart($userId, $productId)
+    {
+        $pdo = getPDO();
+        $jsonProductsId = json_encode([$productId]);
+        $jsonAmount = json_encode([1]);
+        $product = getProductData($productId);
+        try {
+            // Consulta para insertar el carrito del usuario
+            $sql = "INSERT INTO carrito (id_usuario, id_producto, cantidad, isPagado) VALUES (:userId, :productId, :jsonAmount, :isPagado)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                ':userId' => $userId,
+                ':productId' => $productId,
+                ':jsonAmount' => $jsonAmount,
+                ':isPagado' => false
+            ]);
+            $sql2 = "UPDATE carrito SET total = total + :precio WHERE id_usuario = :userId";
+            $stmt2 = $pdo->prepare($sql2);
+            $stmt2->execute([
+                ':precio' => $product["precio"],
+                ':userId' => $userId
+            ]);
+            
+        } catch (PDOException $e) {
+            error_log("Error al crear el carrito: " . $e->getMessage());
+        }
+    }
+
+    function getCart($userid) 
+    {
+        $pdo = getPDO();
+
+        try {
+            // Consulta para obtener los datos del carrito
+            $sql = "SELECT * FROM carts WHERE carts.id_user = $userId";
+            $stmt = $pdo->query($sql);
+            $cart = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $cart;
+        } catch (PDOException $e) {
+            error_log("Error al consultar el carrito: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    function addNewItemToCart($userId, $productId)
+    {
+        $pdo = getPDO();
+        $cart = getCart();
+
+        try {
+            $sql = "UPDATE carrito SET id_producto = JSON_ARRAY_APPEND(id_producto, '$', :productoNuevo), cantidad = JSON_ARRAY_APPEND(cantidad, '$', :cantidadProducto) WHERE carrito.id_usuario = :idUsuario";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                ':productoNuevo' => $productId,
+                ':cantidadProducto' => 1,
+                ':idUsuario' => $userId
+            ]);
+        } catch (PDOException $e) {
+            error_log("Error al agregar el producto al carrito: " . $e->getMessage());
+        }
+    }
+
+    function deleteCartItem($userid, $productId) 
+    {
+        $pdo = getPDO();
+
+        try {
+            // Consulta para obtener los datos del carrito
+            $sql = "SELECT  FROM carts WHERE carts.id_user = $userId";
+            $stmt = $pdo->query($sql);
+            $cart = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $cart;
+        } catch (PDOException $e) {
+            error_log("Error al consultar el carrito: " . $e->getMessage());
+            return [];
+        }
+    }
+    #endregion
 
     function clean_post_inputs()
     {
