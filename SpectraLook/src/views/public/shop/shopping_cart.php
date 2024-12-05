@@ -10,8 +10,9 @@
 
   <!-- Los productos del carrito -->
   <div class="cart-page">
+    <!-- Productos del carrito aquí -->
     <div class="cart-container">
-      <!-- Productos del carrito aquí -->
+      
     </div>
 
     <div class="cart-summary">
@@ -19,12 +20,12 @@
       <p>Total: $<span id="cart-total">0.00</span></p>
       <div class="cart-buttons">
         <a href="<?=BASE_URL?>/../src/views/public/welcome.php" class="continue-shopping-button">Seguir comprando</a>
-        <button  class="checkout-button" onclick="checkout()">Pagar</button>
+        <button  class="checkout-button" >Pagar</button>
       </div>
     </div>
   </div>
 
-
+  <div id="notification-container"></div>
 
   <?php
     include_once __DIR__. '/../../layouts/footer.php';

@@ -404,8 +404,8 @@ main {
 .carousel {
     display: flex;
     position: relative;
-    justify-content: left;
-    gap: 20px; 
+    justify-content: center;
+    gap: 10px; 
     width: 100%;
     height: 100%;
     transition: transform 0.5s ease-in-out;
@@ -1032,6 +1032,18 @@ form label {
     background-color: #35396e;
 }
 
+
+#notification-container div {
+    animation: fadeInOut 6s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
+
 /*promocion debajo de ver detalles del producto*/
 .promo-container {
     background-color: #ffffff; 
@@ -1283,7 +1295,8 @@ form label {
 
     .contenedor_login {
         width: 90%;
-        margin-left: 5%;
+        margin-left: 2%;
+        margin-top: 7%;
     }
 
     .button_login {
@@ -1325,6 +1338,23 @@ form label {
         grid-template-columns: repeat(1,1fr);
         height: 90vh;
     }
+
+    /****************RECOMENDADOS************************/
+
+.carousel-item {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-btn.prev {
+    left: -5%;
+}
+
+.carousel-btn.next {
+    right: -5%;
+}
+
     /*Footer General*/
 
     .footer {
@@ -1372,7 +1402,10 @@ form label {
         gap: 12px;
     }
     
-    
+    .centrar_nav {
+        margin-left: auto;
+        margin-right: auto;
+    }
     
 
 }

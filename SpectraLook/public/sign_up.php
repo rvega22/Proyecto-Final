@@ -42,7 +42,7 @@ require_once __DIR__.'/../src/helpers/functions.php';
 
                 <p id="error-message" style="color: red;"></p>
                 <button type="submit" class="button">Registrar</button>
-                <button type="submit" class="button_cancel">Cancelar</button>
+                <button type="button" class="button_cancel">Cancelar</button>
             </form>
         </div>
     </div>

@@ -14,7 +14,7 @@
 }
 
 /* CSS del login */
-body-login {
+.body-login {
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -76,7 +76,7 @@ body-login {
 
 .login-content {
     flex: 1;
-    padding: 40px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;

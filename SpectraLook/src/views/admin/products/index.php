@@ -17,6 +17,8 @@
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Precio</th>
+            <th>Recomendado</th>
+            <th>Imagen</th>
             <th>Acciones</th>
         </tr>
     </thead>

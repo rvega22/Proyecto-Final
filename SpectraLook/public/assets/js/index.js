@@ -66,6 +66,11 @@ function showProductDetails() {
    
 }
 
+document.querySelector('.button_cancel').addEventListener('click', () => {
+    
+    window.location.href = "http://localhost/Proyecto-Final/SpectraLook/public/login.php"
+});
+
 // Función para actualizar la cantidad
 let quantity = 1;
 function updateQuantity(change) {
@@ -74,3 +79,40 @@ function updateQuantity(change) {
 }
 
 
+function showNotification(message) {
+    // Crear el elemento de notificación
+    const notification = document.createElement('div');
+    
+    notification.textContent = message;
+
+    notification.style.position = 'fixed';
+    notification.style.top = '20px';
+    notification.style.right = '20px';
+    notification.style.backgroundColor = 'var(--primary-color)';
+    notification.style.color = 'var(--primary-color-of-letters)';
+    notification.style.padding = '15px 20px';
+    notification.style.borderRadius = 'var(--border-radius)';
+    notification.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+    notification.style.fontFamily = 'var(--font-family)';
+    notification.style.fontSize = '16px';
+    notification.style.zIndex = '1000';
+
+    const container = document.getElementById('notification-container');
+    container.appendChild(notification);
+
+    // SetTimeout
+    setTimeout(() => {
+        container.removeChild(notification);
+    }, 6000);
+}
+const carrito_compras = document.querySelector(".cart-container");
+console.log(carrito_compras.hasChildNodes());
+// Pagar
+document.querySelector('.checkout-button').addEventListener('click', () => {
+    if (carrito_compras.children.length > 0) {
+        showNotification('¡Pago completado!');
+    } else {
+        
+    }
+    
+});
