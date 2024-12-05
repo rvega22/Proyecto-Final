@@ -17,8 +17,8 @@
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Precio</th>
-            <th>Recomendado</th>
             <th>Imagen</th>
+            <th>Recomendado</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -31,11 +31,19 @@
 <div class="form-container" id="productForm">
     <h2 id="formTitle">Agregar Producto</h2>
     <label for="productName">Nombre del Producto:</label>
-    <input type="text" id="productName" placeholder="Escribe el nombre del producto">
+    <input type="text" id="productName" class="colorInput" placeholder="Escribe el nombre del producto">
     <label for="productDescription">Descripción:</label>
-    <input type="text" id="productDescription" placeholder="Escribe una descripción">
+    <input type="text" id="productDescription" class="colorInput" placeholder="Escribe una descripción">
     <label for="productPrice">Precio:</label>
-    <input type="number" id="productPrice" placeholder="Escribe el precio">
+    <input type="number" id="productPrice" class="colorInput" placeholder="Escribe el precio">
+    <div>
+        <label for="thumbnail_image">Imagen de Miniatura</label>
+        <input type="file" id="thumbnailImage" name="thumbnailImage" accept="image/*">
+    </div>
+    <div>
+        <label for="recommended">¿Producto recomendado?</label>
+        <input type="checkbox" id="recommended" name="recommended">
+    </div>
 
     <div class="form-actions">
         <button class="publish" id="publishBtn">Publicar</button>

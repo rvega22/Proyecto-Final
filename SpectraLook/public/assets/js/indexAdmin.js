@@ -18,20 +18,26 @@ addProductBtn.addEventListener('click', () => {
 
 // Publicar producto
 publishBtn.addEventListener('click', () => {
+    console.log("hOLA")
     const name = document.getElementById('productName').value;
     const description = document.getElementById('productDescription').value;
     const price = document.getElementById('productPrice').value;
+    const thumbnailInput = document.getElementById('thumbnailImage'); // Imagen de miniatura
+    const thumbnail = thumbnailInput.files[0]; // Archivo seleccionado
+    const recommended = document.getElementById('recommended').checked; // Valor del checkbox
 
-    if (!name || !description || !price) {
-        showMessage('Por favor, completa todos los campos.', 'error');
+    if (!name || !description || !price || !thumbnail) {
+        showMessage('Por favor, completa todos los campos, incluida la imagen.', 'error');
         return;
     }
 
+    const thumbnailURL = URL.createObjectURL(thumbnail); // Crear URL para mostrar la imagen
+
     if (editIndex !== null) {
-        products[editIndex] = { name, description, price };
+        products[editIndex] = { name, description, price, thumbnailURL, recommended };
         showMessage('Producto editado correctamente.', 'success');
     } else {
-        products.push({ name, description, price });
+        products.push({ name, description, price, thumbnailURL, recommended });
         showMessage('Producto publicado correctamente.', 'success');
     }
 
@@ -59,6 +65,10 @@ function updateProductList() {
             <td>${product.description}</td>
             <td>${product.price}</td>
             <td>
+                ${product.thumbnailURL ? `<img src="${product.thumbnailURL}" alt="${product.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">` : 'No imagen'}
+            </td>
+            <td>${product.recommended ? 'Sí' : 'No'}</td>
+            <td>
                 <button class="edit" onclick="editProduct(${index})">Editar</button>
                 <button class="delete" onclick="deleteProduct(${index})">Eliminar</button>
             </td>
@@ -74,6 +84,8 @@ window.editProduct = (index) => {
     document.getElementById('productName').value = product.name;
     document.getElementById('productDescription').value = product.description;
     document.getElementById('productPrice').value = product.price;
+    document.getElementById('thumbnailImage').value = ''; // No se puede cargar la imagen en un input file
+    document.getElementById('recommended').checked = product.recommended; // Actualizar checkbox
     document.getElementById('formTitle').textContent = 'Editar Producto';
     productForm.style.display = 'block';
 };

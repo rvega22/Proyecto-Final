@@ -31,6 +31,7 @@ body {
     font-size: 30px;
     font-family: var(--font-family);
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+    width: 100%;
 }
 
 .message {
@@ -169,6 +170,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
+    color: #000000;
     transition: border-color 0.3s ease;
 }
 
@@ -206,6 +208,20 @@ body {
 
 .delete:hover {
     background-color: #c82333;
+}
+
+.product-list img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.form-container div input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 /*********************************PUBLIC********************************************/
@@ -1204,7 +1220,24 @@ form label {
     .bloque_texto a{
         font-size: 20px;
     }
+
+    /****************ADMIN************************/
     
+    .product-list {
+        width: 70%;
+    }
+
+    .product-list th {
+        font-size: 14px;
+    }
+
+    .edit {
+        width: auto;
+    }
+    
+    .delete {
+        width: auto;
+    }
 }
 
 @media (max-width: 580px) {
@@ -1407,7 +1440,20 @@ form label {
         margin-right: auto;
     }
     
+    /****************ADMIN************************/
+    
+    .product-list {
+        width: 40%;
+    }
 
+    .product-list th {
+        font-size: 10px;
+        padding: 10px;
+    }
+
+    .product-list td {
+        padding: 6px;
+    }
 }
 
 
