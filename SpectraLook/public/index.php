@@ -34,7 +34,7 @@ switch ($request) {
         break;
 
     case BASE_PATH . '/register':
-        require_once __DIR__ . '/registro.php';
+        require_once __DIR__ . '/sign_up.php';
         break;
     
     //Controladores
@@ -47,7 +47,7 @@ switch ($request) {
         break;
 
     case BASE_PATH . '/register-process':
-        require_once __DIR__ . '/../src/controllers/RegisterController.php';
+        require_once __DIR__ . '/../src/controllers/SignUpController.php';
         break;
 
     // Página no encontrada

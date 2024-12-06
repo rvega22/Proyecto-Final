@@ -23,7 +23,22 @@ require_once __DIR__.'/../src/helpers/functions.php';
         
         <div class="login-content">
             <h2 class="title">Registro</h2>
-            <form id="registro-formulario" onsubmit="validatePassword(event)">
+            <?php if (!empty($_SESSION['errors'])): ?>
+                <div class="error-message">
+                    <?php foreach ($_SESSION['errors'] as $error): ?>
+                        <p><?= htmlspecialchars($error) ?></p>
+                    <?php endforeach; ?>
+                    <?php unset($_SESSION['errors']); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (!empty($_SESSION['success'])): ?>
+                <div class="success-message">
+                    <p><?= htmlspecialchars($_SESSION['success']) ?></p>
+                    <?php unset($_SESSION['success']); ?>
+                </div>
+            <?php endif; ?>
+            <form method="POST" action="<?= BASE_URL ?>/../register-process">
                 
                 <label for="nombre">Nombre Completo</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" autocomplete="name" required>
@@ -32,7 +47,7 @@ require_once __DIR__.'/../src/helpers/functions.php';
                 <input type="email" id="email" name="email" placeholder="correo@gmail.com" autocomplete="email" required>
                 
                 <label for="telefono">Número de Teléfono</label>
-                <input type="tel" id="telefono" name="telefono" placeholder="(012) 345 6789" autocomplete="tel" required>
+                <input type="text" id="telefono" name="telefono" placeholder="(012) 345 6789" autocomplete="tel" required>
                 
                 <label for="password">Contraseña</label>
                 <input type="password" id="password" name="password" placeholder="Contraseña" autocomplete="new-password" required>

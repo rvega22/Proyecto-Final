@@ -21,10 +21,20 @@ require_once __DIR__.'/../src/helpers/functions.php';
             <a  href=""><i class="fa-solid fa-circle-user"></i></a>
         </div>
 
-        <div>
+        <div class="form_group">
             <h1 class="letra_login">Login</h1>
         </div>
-
+        <div>
+            <?php if (!empty($_SESSION['errors'])): ?>
+            <div class="error-messages">
+            <?php foreach ($_SESSION['errors'] as $error): ?>
+                <p><?= htmlspecialchars($error) ?></p>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['errors']); // Limpiar los errores después de mostrarlos ?>
+                </div>
+            <?php endif; ?>
+        </div>
+        
         <!-- Formulario de login -->
         <form method="POST" action="<?=BASE_URL?>/../login-process">
         <div class="form_group main_icons">
@@ -51,7 +61,7 @@ require_once __DIR__.'/../src/helpers/functions.php';
                 <input class="input_login"
                 type="password"
                 id="Contraseña"
-                name="Contraseña"
+                name="password"
                 placeholder="Ingresa tu Contraseña" required>
         </div>
 
@@ -62,9 +72,8 @@ require_once __DIR__.'/../src/helpers/functions.php';
 
         <div class="extra_links">
             <a href="#">¿Olvido su contraseña?</a>
-            <a href="sign_up.php">Crear cuenta</a>
+            <a href="<?=BASE_URL?>/../register">Crear cuenta</a>
         </div>
     </main>
-    <br><br>
 </body>
 </html>
