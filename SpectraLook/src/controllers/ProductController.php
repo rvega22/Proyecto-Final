@@ -1,74 +1,70 @@
 <?php 
-require_once __DIR__.'/../helpers/functions.php'; // Importa funciones auxiliares.
+require_once __DIR__.'/../helpers/functions.php';
 
-// Manejo de solicitudes POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     clean_post_inputs(); // Limpia las entradas del formulario para mayor seguridad.
     if(isset($_GET['product_id'])){ 
-        update(filter_input(INPUT_GET, 'product_id', FILTER_SANITIZE_STRING)); // Si se recibe un ID, actualiza la carrera.
+        update(filter_input(INPUT_GET, 'product_id', FILTER_SANITIZE_STRING));
     }else{
-        store(); // Si no hay ID, guarda un nuevo producto.
+        store();
     }
 }
 
-// Obtiene la lista de carreras.
 function index()
 {
     $pdo = getPDO(); // Obtiene la conexión PDO.
 
     try {
-        $sql = "SELECT id, name, price, details, img_url, recommendation FROM products"; // Consulta SQL para obtener las carreras.
+        $sql = "SELECT id, name, price, details, img_url, recommendation FROM products";
         $stmt = $pdo->query($sql);
-        $products = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtiene las filas como un arreglo asociativo.
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $products; // Retorna las carreras.
     } catch (PDOException $e) {
-        error_log("Error al consultar la base de datos". $e->getMessage()); // Registra el error en el log.
-        return []; // Retorna un arreglo vacío en caso de error.
+        error_log("Error al consultar la base de datos". $e->getMessage());
+        return [];
     }
 }
 
-// Obtiene la lista de productos.
 function indexRecommended()
 {
-    $pdo = getPDO(); // Obtiene la conexión PDO.
+    $pdo = getPDO();
 
     try {
-        $sql = "SELECT id, name, price, details, img_url, recommendation FROM products WHERE recommendation = :recommendation"; // Consulta SQL para obtener los productos recomendados.
-        $stmt = $pdo->prepare($sql); // Prepara la consulta
-        $stmt->execute(['recommendation' => 1]); // Ejecuta la consulta con el parámetro
-        $products = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtiene los resultados
+        $sql = "SELECT id, name, price, details, img_url, recommendation FROM products WHERE recommendation = :recommendation";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['recommendation' => 1]);
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $products; // Retorna los productos
     } catch (PDOException $e) {
-        error_log("Error al consultar la base de datos: " . $e->getMessage()); // Registra el error
-        return []; // Retorna un arreglo vacío en caso de error
+        error_log("Error al consultar la base de datos: " . $e->getMessage());
+        return [];
     }
 }
 
-// Muestra los detalles de una carrera específica.
 function show($id) 
 {
-    $id = htmlspecialchars($id); // Escapa caracteres para evitar inyecciones de HTML/JS.
+    $id = htmlspecialchars($id);
 
     if ($id === null) {
-        return []; // Retorna un arreglo vacío si el ID no es válido.
+        return [];
     }
 
-    $pdo = getPDO(); // Obtiene la conexión PDO.
+    $pdo = getPDO();
 
     try {
-        $sql = "SELECT * FROM products WHERE id = :id LIMIT 1"; // Consulta SQL para buscar una carrera específica.
+        $sql = "SELECT * FROM products WHERE id = :id LIMIT 1";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['id' => $id]); // Ejecuta la consulta con el ID.
-        $productData = $stmt->fetch(PDO::FETCH_ASSOC); // Obtiene el resultado.
+        $stmt->execute(['id' => $id]);
+        $productData = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$productData) {
-            return []; // Si no encuentra datos, retorna un arreglo vacío.
+            return [];
         }
 
-        return $productData; // Retorna los datos de la carrera.
+        return $productData;
     } catch (PDOException $e) {
         error_log("Error al consultar la base de datos: " . $e->getMessage());
-        return []; // En caso de error, retorna un arreglo vacío.
+        return [];
     }
 }
 
@@ -105,37 +101,35 @@ if (isset($_GET['delete_id'])) {
     }
 }
 
-// Almacena una nueva carrera en la base de datos.
 function store() {
-    $imageName = saveImage(); // Guarda la imagen y obtiene su nombre.
-    $pdo = getPDO(); // Obtiene la conexión PDO.
+    $imageName = saveImage();
+    $pdo = getPDO();
     $isRecommended = isset($_POST['recommended']) ? 1 : 0;
     try {
         $sql = "INSERT INTO products (name, price, img_url, details, recommendation) VALUES (:name, :price, :img_url, :details, :recommendation)";
-        $stmt = $pdo->prepare($sql); // Prepara la consulta SQL.
+        $stmt = $pdo->prepare($sql);
         $data = [
-            'name' => $_POST['name'], // Datos del formulario.
+            'name' => $_POST['name'],
             'price' => $_POST['price'],
-            'img_url' => $imageName != null ? 'img/'.$imageName : null, // Guarda la URL de la imagen si existe.
+            'img_url' => $imageName != null ? 'img/'.$imageName : null,
             'details' => $_POST['details'],
             'recommendation' => $isRecommended
         ];
 
-        $stmt->execute($data); // Ejecuta la consulta.
+        $stmt->execute($data);
         
-        set_success_message('Se ha agregado el producto.'); // Mensaje de éxito.
-        redirect_back(); // Redirige al usuario.
+        set_success_message('Se ha agregado el producto.');
+        redirect_back();
     } catch (PDOException $e) {
-        error_log("Error al consultar la base de datos: " . $e->getMessage()); // Registra el error.
-        set_error_message_redirect($e->getMessage()); // Mensaje de error.
+        error_log("Error al consultar la base de datos: " . $e->getMessage());
+        set_error_message_redirect($e->getMessage());
     }
 }
 
-// Actualiza una carrera existente.
 function update($id) {
-    $pdo = getPDO(); // Obtiene la conexión PDO.
-    $product = show($id); // Obtiene los datos de la carrera existente.
-    $imageName = saveImage(); // Guarda la nueva imagen si se subió.
+    $pdo = getPDO();
+    $product = show($id);
+    $imageName = saveImage();
     $isRecommended = isset($_POST['recommended']) ? 1 : 0;
 
     try {
@@ -145,30 +139,29 @@ function update($id) {
                     img_url = :img_url,
                     details = :details,
                     recommendation = :recommendation
-                WHERE id = :id"; // Consulta para actualizar la carrera.
+                WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $data = [
             'id' => $id,
             'name' => $_POST['name'],
             'price' => $_POST['price'],
-            'img_url' => $imageName ? 'img/'.$imageName : $product['img_url'], // Usa la nueva imagen si existe.
+            'img_url' => $imageName ? 'img/'.$imageName : $product['img_url'],
             'details' => $_POST['details'],
             'recommendation' => $isRecommended
         ];
 
-        $stmt->execute($data); // Ejecuta la consulta.
-        // Borra la imagen previa si se subió una nueva.
+        $stmt->execute($data);
         if ($imageName && $product['img_url']) {
             $oldImagePath = __DIR__ . '/../../public/assets/img/' . $product['img_url'];
             if (file_exists($oldImagePath)) 
-                unlink($oldImagePath); // Elimina la imagen antigua.
+                unlink($oldImagePath);
         }
         
-        set_success_message('Se han guardado los cambios.'); // Mensaje de éxito.
-        redirect_back(); // Redirige al usuario.
+        set_success_message('Se han guardado los cambios.');
+        redirect_back();
     } catch (PDOException $e) {
-        error_log("Error al consultar la base de datos: " . $e->getMessage()); // Registra el error.
-        set_error_message_redirect($e->getMessage()); // Mensaje de error.
+        error_log("Error al consultar la base de datos: " . $e->getMessage());
+        set_error_message_redirect($e->getMessage());
     }
 
     
