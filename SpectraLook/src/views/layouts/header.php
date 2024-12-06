@@ -11,7 +11,7 @@ require_once __DIR__.'/../../helpers/functions.php';
         
         <link rel="stylesheet" href="<?=ASSETS_URL?>/css/style.css">
         <script src="https://kit.fontawesome.com/fe8d3f6ced.js" crossorigin="anonymous"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         
