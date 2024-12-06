@@ -90,8 +90,8 @@ function update($id) {
     try {
         $sql = "UPDATE products SET 
                     name = :name, 
-                    price = :abbreviation,
-                    image_url = :image_url,
+                    price = :price,
+                    img_url = :img_url,
                     details = :details
                 WHERE id = :id"; // Consulta para actualizar la carrera.
         $stmt = $pdo->prepare($sql);
