@@ -27,6 +27,22 @@ function index()
     }
 }
 
+// Obtiene la lista de productos.
+function indexRecommended()
+{
+    $pdo = getPDO(); // Obtiene la conexión PDO.
+
+    try {
+        $sql = "SELECT id, name, price, details, img_url, recommendation FROM products WHERE recommendation = :recommendation"; // Consulta SQL para obtener las carreras.
+        $stmt = $pdo->prepare($sql);
+        $stmt = $pdo->execute(['recommendation' => 1])
+        $products = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Error al consultar la base de datos". $e->getMessage());
+        return [];
+    }
+}
+
 // Muestra los detalles de una carrera específica.
 function show($id) 
 {
