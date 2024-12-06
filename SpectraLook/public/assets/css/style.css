@@ -63,7 +63,7 @@ body {
     padding: 12px;
     font-size: 16px;
     background-color: #41e50f;
-    color: white;
+    color: rgb(5, 5, 5);
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -813,8 +813,6 @@ form {
     max-width: 1550px;
     width: 80%;
     padding: 4%;
-    border-radius: 10px;
-    box-shadow: 1px 1px 4px 4px rgba(35, 62, 138, 0.678);
     font-family: var(--font-family);
     font-size: 32px;
 }
@@ -834,7 +832,8 @@ form h2::after {
 }
 
 form:hover {
-    box-shadow: 9px 7px 30px 6px rgba(112, 106, 106, 0.678);
+    box-shadow: 9px 7px 30px 6px rgba(47, 101, 218, 0.678);
+    border-radius: var(--border-radius);
 }
 
 form input {

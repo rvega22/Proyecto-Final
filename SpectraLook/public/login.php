@@ -25,9 +25,11 @@ require_once __DIR__.'/../src/helpers/functions.php';
             <h1 class="letra_login">Login</h1>
         </div>
 
+        <!-- Formulario de login -->
+        <form method="POST" action="<?=BASE_URL?>/../login-process">
         <div class="form_group main_icons">
             <a href=""><i class="fa-solid fa-user"></i></a>
-            <h3>Usuario</h3>
+            <h3>E-mail</h3>
         </div>
 
         <div class="form_group">
@@ -36,7 +38,7 @@ require_once __DIR__.'/../src/helpers/functions.php';
                 type="email"
                 id="email"
                 name="email"
-                placeholder="Ingresa tu correo">
+                placeholder="Ingresa tu correo" required>
         </div>
 
         <div class="form_group main_icons">
@@ -50,12 +52,13 @@ require_once __DIR__.'/../src/helpers/functions.php';
                 type="password"
                 id="Contraseña"
                 name="Contraseña"
-                placeholder="Ingresa tu Contraseña">
+                placeholder="Ingresa tu Contraseña" required>
         </div>
 
         <div class="button_tamanio">
-            <a href="#" class="button_base button_login">Iniciar sesión</a>
+        <button type="submit" class="button_base button_login">Iniciar sesión</button>
         </div>
+        </form>
 
         <div class="extra_links">
             <a href="#">¿Olvido su contraseña?</a>
