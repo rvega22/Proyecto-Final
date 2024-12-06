@@ -33,13 +33,14 @@ function indexRecommended()
     $pdo = getPDO(); // Obtiene la conexión PDO.
 
     try {
-        $sql = "SELECT id, name, price, details, img_url, recommendation FROM products WHERE recommendation = :recommendation"; // Consulta SQL para obtener las carreras.
-        $stmt = $pdo->prepare($sql);
-        $stmt = $pdo->execute(['recommendation' => 1])
-        $products = $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT id, name, price, details, img_url, recommendation FROM products WHERE recommendation = :recommendation"; // Consulta SQL para obtener los productos recomendados.
+        $stmt = $pdo->prepare($sql); // Prepara la consulta
+        $stmt->execute(['recommendation' => 1]); // Ejecuta la consulta con el parámetro
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtiene los resultados
+        return $products; // Retorna los productos
     } catch (PDOException $e) {
-        error_log("Error al consultar la base de datos". $e->getMessage());
-        return [];
+        error_log("Error al consultar la base de datos: " . $e->getMessage()); // Registra el error
+        return []; // Retorna un arreglo vacío en caso de error
     }
 }
 

@@ -1,75 +1,26 @@
+<?php
+require_once __DIR__ . '/../../controllers/ProductController.php';
+$recommendedProducts = indexRecommended(); // Obtener productos recomendados de la base de datos.
+?>
+
 <div class="centrarTitulo">
     <h2>Recomendados</h2>
-  </div>
-  <div class="carousel-container">
+</div>
+<div class="carousel-container">
     <button class="carousel-btn prev" aria-label="Previous">&#9664;</button>
     <div class="carousel">
-        <div class="carousel-item">
-        <a href="<?=BASE_URL?>/../src/views/public/products/details.php">
-          <img class="target_img" src="<?=ASSETS_URL?>/img/Imagen_lentes_2.png" alt="Imagen de lentes" width="100%">
-          <h2 class="letra" id="tamanio">SPECTRA ROAD METAL</h2>
-          <p class="alinear_texto">$ 4200</p>
-        </div>
-        </a>
-
-        <div class="carousel-item">
-        <a href="<?=BASE_URL?>/../src/views/public/products/details.php">
-          <img class="target_img" src="<?=ASSETS_URL?>/img/Imagen_lentes_2.png" alt="Imagen de lentes" width="100%">
-          <h2 class="letra" id="tamanio">WAYFARER OVAL CHANGE</h2>
-          <p class="alinear_texto">$ 3299</p>
-          </div>
-        </a>
-
-      <div class="carousel-item">
-        <a href="<?=BASE_URL?>/../src/views/public/products/details.php">
-          <img class="target_img" src="<?=ASSETS_URL?>/img/Imagen_lentes_3.png" alt="Imagen de lentes" width="100%">
-          <h2 class="letra" id="tamanio">LOOK BASE-HOT</h2>
-          <p class="alinear_texto">$ 3200</p>
-        </a>
-      </div>
-
-      <div class="carousel-item">
-        <a href="<?=BASE_URL?>/../src/views/public/products/details.php">
-          <img class="target_img" src="<?=ASSETS_URL?>/img/Imagen_lentes_4.png" alt="Imagen de lentes" width="100%">
-          <h2 class="letra" id="tamanio">X8 SPECTRA MODERN</h2>
-          <p class="alinear_texto">$ 2299</p>
-        </a>
-      </div>
-
-      <div class="carousel-item">
-        <a href="<?=BASE_URL?>/../src/views/public/products/details.php">
-          <img class="target_img" src="<?=ASSETS_URL?>/img/Imagen_lentes_5.png" alt="Imagen de lentes" width="100%">
-          <h2 class="letra" id="tamanio">WAYFARER ONE</h2>
-          <p class="alinear_texto">$ 4499</p>
-        </a>
-      </div>
-
-      <div class="carousel-item">
-        <a href="<?=BASE_URL?>/../src/views/public/products/details.php">
-          <img class="target_img" src="<?=ASSETS_URL?>/img/Imagen_lentes_5.png" alt="Imagen de lentes" width="100%">
-          <h2 class="letra" id="tamanio">WAYFARER ONE</h2>
-          <p class="alinear_texto">$ 4499</p>
-        </a>
-      </div>
-      
-      <div class="carousel-item">
-        <a href="<?=BASE_URL?>/../src/views/public/products/details.php">
-          <img class="target_img" src="<?=ASSETS_URL?>/img/Imagen_lentes_2.png" alt="Imagen de lentes" width="100%">
-          <h2 class="letra" id="tamanio">SPECTRA ROAD METAL</h2>
-          <p class="alinear_texto">$ 4200</p>
-        </a>
-      </div>
-
-      <div class="carousel-item">
-        <a href="<?=BASE_URL?>/../src/views/public/products/details.php">
-          <img class="target_img" src="<?=ASSETS_URL?>/img/Imagen_lentes_2.png" alt="Imagen de lentes" width="100%">
-          <h2 class="letra" id="tamanio">SPECTRA ROAD METAL</h2>
-          <p class="alinear_texto">$ 4200</p>
-        </a>
-      </div>
+        <?php foreach ($recommendedProducts as $product): ?>
+            <div class="carousel-item">
+                <a href="<?= BASE_URL ?>/../src/views/public/products/details.php?product_id=<?= $product['id'] ?>">
+                    <img class="target_img" src="<?= ASSETS_URL ?>/<?= htmlspecialchars($product['img_url']) ?>" alt="Imagen de <?= htmlspecialchars($product['name']) ?>" width="100%">
+                    <h2 class="letra" id="tamanio"><?= htmlspecialchars($product['name']) ?></h2>
+                    <p class="alinear_texto">$ <?= htmlspecialchars($product['price']) ?></p>
+                </a>
+            </div>
+        <?php endforeach; ?>
     </div>
     <button class="carousel-btn next" aria-label="Next">&#9654;</button>
-  </div>
+</div>
 
 <script>
 const carousel = document.querySelector('.carousel');
