@@ -28,41 +28,43 @@ if (empty($product)) {
 
 
     <main class="product-main">
-        <div class="product-details-container">
-            <!-- Imagen del Producto -->
-            <div class="product-image-container">
-                <img id="product-image" src="<?= ASSETS_URL ?>/<?= htmlspecialchars($product['img_url']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" />
-            </div>
-        
-            <!-- Información del Producto -->
-            <div class="product-info">
-                <!-- Modelo -->
-                <h1 id="product-title" class="product-title">Modelo: <?= htmlspecialchars($product['name']) ?></h1>
-                <!-- Precio -->
-                <p id="product-price" class="product-price">$<?= htmlspecialchars($product['price']) ?> | Envío gratis</p>
-                <!-- Descripción -->
-                <p id="product-description"><?= htmlspecialchars($product['details']) ?></p>
+    <div class="product-details-container">
+        <!-- Imagen del Producto -->
+        <div class="product-image-container">
+            <img id="product-image" src="<?= ASSETS_URL ?>/<?= htmlspecialchars($product['img_url']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" />
+        </div>
+
+        <!-- Información del Producto -->
+        <div class="product-info">
+            <!-- Modelo -->
+            <h1 id="product-title" class="product-title">Modelo: <?= htmlspecialchars($product['name']) ?></h1>
+            <!-- Precio -->
+            <p id="product-price" class="product-price">$<?= htmlspecialchars($product['price']) ?> | Envío gratis</p>
+            <!-- Descripción -->
+            <p id="product-description"><?= htmlspecialchars($product['details']) ?></p>
+
+            <!-- Contador -->
+            <div class="quantity-selector">
+                <label class="quantity-selector">Cantidad: </label>
+                <button onclick="updateQuantity(-1)" class="quantity-button">-</button>
+                <span id="quantity" class="quantity-display">1</span>
+                <button onclick="updateQuantity(1)" class="quantity-button">+</button>
             </div>
 
-                <!-- Contador -->
-                <div class="quantity-selector">
-                    <label class="quantity-selector">Cantidad: </label>
-                    <button onclick="updateQuantity(-1)" class="quantity-button">-</button>
-                    <span id="quantity" class="quantity-display">1</span>
-                    <button onclick="updateQuantity(1)" class="quantity-button">+</button>
-                </div>
-            </div>
+            <!-- Botón Agregar al Carrito -->
+            <button class="add-to-cart-button">Agregar al carrito</button>
         </div>
-    
-        <!-- Detalles Inferiores -->
-        <div class="product-details-section">
-            <ul class="details-tabs">
-                <li class="tab active" onclick="showTab('includes')"><strong>Incluye</strong></li>
-                <li class="tab" onclick="showTab('details')"><strong>Detalles</strong></li>
-                <li class="tab" onclick="showTab('warranty')"><strong>Garantía</strong></li>
-            </ul>
-        </div>
-    </main>
+    </div>
+
+    <!-- Detalles Inferiores -->
+    <div class="product-details-section">
+        <ul class="details-tabs">
+            <li class="tab active" onclick="showTab('includes')"><strong>Incluye</strong></li>
+            <li class="tab" onclick="showTab('details')"><strong>Detalles</strong></li>
+            <li class="tab" onclick="showTab('warranty')"><strong>Garantía</strong></li>
+        </ul>
+    </div>
+</main>
     
 
      <!-- Promocion img,p -->
