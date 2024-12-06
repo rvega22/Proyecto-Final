@@ -13,7 +13,7 @@
         $route.="?product_id=$id";
     }
 ?>
-
+<a class="return" href="<?=SRC_URL?>/views/admin/products/index.php"><i class="fa-solid fa-right-to-bracket"></i></a>
 <form class="form-container" id="productForm" action="<?=$route?>" method="POST" enctype="multipart/form-data">
     <h2 id="formTitle"><?=$title?> Producto</h2>
     <label for="productName">Nombre del Producto:</label>

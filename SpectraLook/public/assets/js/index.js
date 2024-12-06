@@ -72,10 +72,11 @@ document.querySelector('.button_cancel').addEventListener('click', () => {
 });
 
 // Función para actualizar la cantidad
-let quantity = 1;
-function updateQuantity(change) {
-    quantity = Math.max(1, quantity + change); // Asegura que la cantidad sea al menos 1
-    document.getElementById("quantity").textContent = quantity;
+function updateQuantity(amount) {
+    const quantityElement = document.getElementById("quantity");
+    let quantity = parseInt(quantityElement.textContent);
+    quantity = Math.max(1, quantity + amount); // No permitir cantidades menores a 1.
+    quantityElement.textContent = quantity;
 }
 
 

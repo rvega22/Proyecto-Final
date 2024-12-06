@@ -1,6 +1,24 @@
     <?php
         include_once __DIR__.'/../../layouts/header.php';
     ?>
+    <?php
+require_once __DIR__ . '/../../../controllers/ProductController.php';
+
+// Obtener el ID del producto desde la URL
+$product_id = filter_input(INPUT_GET, 'product_id', FILTER_SANITIZE_NUMBER_INT);
+
+// Verificar que el ID del producto es válido
+if (!$product_id) {
+    die('Producto no encontrado.');
+}
+
+// Obtener información del producto desde la base de datos
+$product = show($product_id);
+
+if (empty($product)) {
+    die('Producto no encontrado.');
+}
+?>
 
     <nav class="breadcrumbs">
         <a href="<?=BASE_URL?>/../src/views/public/welcome.php"><i class="fa-solid fa-house"></i> Inicio /</a> 
@@ -10,27 +28,21 @@
 
 
     <main class="product-main">
-        <div id="product-container" class="product-details">
+        <div class="product-details-container">
+            <!-- Imagen del Producto -->
             <div class="product-image-container">
-                <img id="product-image" src="default-image.jpg" alt="Imagen del Producto" />
+                <img id="product-image" src="<?= ASSETS_URL ?>/<?= htmlspecialchars($product['img_url']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" />
             </div>
-    
+        
             <!-- Información del Producto -->
             <div class="product-info">
                 <!-- Modelo -->
-                <h1 id="product-title" class="product-title"> Modelo: Nombre del Producto</h1>
+                <h1 id="product-title" class="product-title">Modelo: <?= htmlspecialchars($product['name']) ?></h1>
                 <!-- Precio -->
-                <p id="product-price" class="product-price">$0.00  | Envio gratis</p>
-    
-                <!-- Selección de Colores -->
-                <div class="product-colors">
-                    <p>Color:</p>
-                    <div class="color-options">
-                        <div class="color-circle" style="background-color: #f0b7e3;" onclick="selectColor('#ff0000')"></div>
-                        <div class="color-circle" style="background-color: #cba1f0;" onclick="selectColor('#00ff00')"></div>
-                        <div class="color-circle" style="background-color: #8ed6ea;" onclick="selectColor('#0000ff')"></div>
-                    </div>
-                </div>
+                <p id="product-price" class="product-price">$<?= htmlspecialchars($product['price']) ?> | Envío gratis</p>
+                <!-- Descripción -->
+                <p id="product-description"><?= htmlspecialchars($product['details']) ?></p>
+            </div>
 
                 <!-- Contador -->
                 <div class="quantity-selector">
