@@ -1,6 +1,7 @@
 <?php
     include_once __DIR__.'/../../layouts/header.php';
-            
+    include_once __DIR__.'/../../../controllers/ProductController.php';
+    $products = getProducts();
 ?>
 
     
@@ -24,32 +25,18 @@
     </thead>
     <tbody>
         <!-- Los productos se agregarán dinámicamente aquí -->
+        <?php foreach($products as $product): ?>
+        <tr>
+            <td><?=$product['name']?></td>
+            <td><?=$product['details']?></td>
+            <td><?=$product['price']?></td>
+            <td>
+                <a href="<?=BASE_URL?>/../src/views/admin/products/form.php?product_id=<?=$product['id']?>&toDelete=false">Editar</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>
-
-
-<div class="form-container" id="productForm">
-    <h2 id="formTitle">Agregar Producto</h2>
-    <label for="productName">Nombre del Producto:</label>
-    <input type="text" id="productName" class="colorInput" placeholder="Escribe el nombre del producto">
-    <label for="productDescription">Descripción:</label>
-    <input type="text" id="productDescription" class="colorInput" placeholder="Escribe una descripción">
-    <label for="productPrice">Precio:</label>
-    <input type="number" id="productPrice" class="colorInput" placeholder="Escribe el precio">
-    <div>
-        <label for="thumbnail_image">Imagen de Miniatura</label>
-        <input type="file" id="thumbnailImage" name="thumbnailImage" accept="image/*">
-    </div>
-    <div>
-        <label for="recommended">¿Producto recomendado?</label>
-        <input type="checkbox" id="recommended" name="recommended">
-    </div>
-
-    <div class="form-actions">
-        <button class="publish" id="publishBtn">Publicar</button>
-        <button class="delete" id="deleteFormBtn">Eliminar</button>
-    </div>
-</div>
 
 <?php
     include_once __DIR__.'/../../layouts/footer.php';
