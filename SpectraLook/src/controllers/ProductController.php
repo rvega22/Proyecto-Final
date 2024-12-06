@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(isset($_GET['product_id'])){ 
         update(filter_input(INPUT_GET, 'product_id', FILTER_SANITIZE_STRING)); // Si se recibe un ID, actualiza la carrera.
     }else{
-        store(); // Si no hay ID, guarda una nueva carrera.
+        store(); // Si no hay ID, guarda un nuevo producto.
     }
 }
 
@@ -17,7 +17,7 @@ function index()
     $pdo = getPDO(); // Obtiene la conexión PDO.
 
     try {
-        $sql = "SELECT id, name, price, details, img_url FROM products"; // Consulta SQL para obtener las carreras.
+        $sql = "SELECT id, name, price, details, img_url, recommendation FROM products"; // Consulta SQL para obtener las carreras.
         $stmt = $pdo->query($sql);
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtiene las filas como un arreglo asociativo.
         return $products; // Retorna las carreras.
@@ -55,20 +55,53 @@ function show($id)
     }
 }
 
+function delete($product_id) {
+    $pdo = getPDO();  
+
+    try {
+        $sql = "DELETE FROM products WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['id' => $product_id]);
+
+        $product = show($product_id); 
+        if ($product && isset($product['imagen'])) {
+            $oldImagePath = __DIR__ . '/../../public/assets/img/' . $product['img_url'];
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);  
+            }
+        }
+
+        set_success_message('Producto eliminado con éxito.');  
+    } catch (PDOException $e) {
+        error_log("Error al eliminar el producto: " . $e->getMessage());  
+        set_error_message_redirect('No se pudo eliminar el producto.'); 
+    }
+
+    redirect_back();
+}
+
+if (isset($_GET['delete_id'])) {
+    $product_id = filter_input(INPUT_GET, 'delete_id', FILTER_SANITIZE_NUMBER_INT);
+
+    if ($product_id && is_numeric($product_id)) {
+        delete($product_id);  
+    }
+}
+
 // Almacena una nueva carrera en la base de datos.
 function store() {
     $imageName = saveImage(); // Guarda la imagen y obtiene su nombre.
-    
     $pdo = getPDO(); // Obtiene la conexión PDO.
-
+    $isRecommended = isset($_POST['recommended']) ? 1 : 0;
     try {
-        $sql = "INSERT INTO products (name, price, img_url, details) VALUES (:name, :price, :img_url, :details)";
+        $sql = "INSERT INTO products (name, price, img_url, details, recommendation) VALUES (:name, :price, :img_url, :details, :recommendation)";
         $stmt = $pdo->prepare($sql); // Prepara la consulta SQL.
         $data = [
             'name' => $_POST['name'], // Datos del formulario.
             'price' => $_POST['price'],
-            'image_url' => $imageName != null ? 'careers/'.$imageName : null, // Guarda la URL de la imagen si existe.
-            'details' => $_POST['details']
+            'img_url' => $imageName != null ? 'img/'.$imageName : null, // Guarda la URL de la imagen si existe.
+            'details' => $_POST['details'],
+            'recommendation' => $isRecommended
         ];
 
         $stmt->execute($data); // Ejecuta la consulta.
@@ -86,13 +119,15 @@ function update($id) {
     $pdo = getPDO(); // Obtiene la conexión PDO.
     $product = show($id); // Obtiene los datos de la carrera existente.
     $imageName = saveImage(); // Guarda la nueva imagen si se subió.
+    $isRecommended = isset($_POST['recommended']) ? 1 : 0;
 
     try {
         $sql = "UPDATE products SET 
                     name = :name, 
                     price = :price,
                     img_url = :img_url,
-                    details = :details
+                    details = :details,
+                    recommendation = :recommendation
                 WHERE id = :id"; // Consulta para actualizar la carrera.
         $stmt = $pdo->prepare($sql);
         $data = [
@@ -100,7 +135,8 @@ function update($id) {
             'name' => $_POST['name'],
             'price' => $_POST['price'],
             'img_url' => $imageName ? 'img/'.$imageName : $product['img_url'], // Usa la nueva imagen si existe.
-            'details' => $_POST['details']
+            'details' => $_POST['details'],
+            'recommendation' => $isRecommended
         ];
 
         $stmt->execute($data); // Ejecuta la consulta.
@@ -124,8 +160,8 @@ function update($id) {
 // Guarda una imagen en el servidor.
 function saveImage()
 {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $image = $_FILES['image'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['img_url']) && $_FILES['img_url']['error'] === UPLOAD_ERR_OK) {
+        $image = $_FILES['img_url'];
 
         // Validar tipo de archivo (solo imágenes).
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];

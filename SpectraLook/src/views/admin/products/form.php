@@ -24,11 +24,11 @@
     <input name="price" type="number" id="productPrice" class="colorInput" placeholder="Escribe el precio" value="<?=$product['price'] ?? ''?>">
     <div>
         <label for="thumbnail_image">Imagen de Miniatura</label>
-        <input type="file" id="thumbnailImage" name="thumbnailImage" accept="image/*">
+        <input type="file" id="thumbnailImage" name="img_url" accept="image/*">
     </div>
     <div>
-        <label for="recommended">¿Producto recomendado?</label>
-        <input type="checkbox" id="recommended" name="recommended">
+        <label for="recommendation">¿Producto recomendado?</label>
+        <input type="checkbox" id="recommended" name="recommendation" value="1">
     </div>
 
     <div class="form-actions">

@@ -9,7 +9,7 @@
 
 
 <div id="message" class="message"></div>
-<button class="add-product-btn" id="addProductBtn">Agregar Producto</button>
+<button class="add-product-btn" id="addProductBtn"><a href="<?=BASE_URL?>/../src/views/admin/products/form.php">Agregar Producto</a></button>
 
 
 <table class="product-list" id="productList">
@@ -30,8 +30,11 @@
             <td><?=$product['name']?></td>
             <td><?=$product['details']?></td>
             <td><?=$product['price']?></td>
+            <td><img src="../../../../public/assets/<?=$product['img_url']?>" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;" alt=""></td>
+            <td><?= $product['recommendation'] == 1 ? 'Sí' : 'No' ?></td>
             <td>
                 <a href="<?=BASE_URL?>/../src/views/admin/products/form.php?product_id=<?=$product['id']?>">Editar</a>
+                <a href="<?=BASE_URL?>/../src/views/admin/products/form.php?delete_id=<?=$product['id']?> ">Eliminar</a>
             </td>
         </tr>
         <?php endforeach; ?>
