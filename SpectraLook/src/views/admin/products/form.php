@@ -1,5 +1,4 @@
 <?php
-    include_once __DIR__.'/../../layouts/header.php';
     include_once __DIR__.'/../../../controllers/ProductController.php';
 
     $title = 'Agregar';
@@ -13,6 +12,21 @@
         $route.="?product_id=$id";
     }
 ?>
+<!DOCTYPE html>
+<html lang="Es">
+<head>
+        <meta charset="UTF-8">
+        <title>Spectralook</title>
+        
+        <link rel="stylesheet" href="<?=ASSETS_URL?>/css/style.css">
+        <script src="https://kit.fontawesome.com/fe8d3f6ced.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+    </head>
+
+<body class="body">
 <a class="return" href="<?=SRC_URL?>/views/admin/products/index.php"><i class="fa-solid fa-right-to-bracket"></i></a>
 <form class="form-container" id="productForm" action="<?=$route?>" method="POST" enctype="multipart/form-data">
     <h2 id="formTitle"><?=$title?> Producto</h2>

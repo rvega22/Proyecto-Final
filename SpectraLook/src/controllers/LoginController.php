@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Conectar a la base de datos
     $pdo = getPDO();
     try {
-        $sql = "SELECT id, name, email, password FROM users WHERE email = :email LIMIT 1";
+        $sql = "SELECT id, name, email, password, isAdmin FROM users WHERE email = :email LIMIT 1";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['email' => $email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -26,10 +26,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Autenticación exitosa
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
-            setcookie('user_id', $user['id'], time() + 60, '/'); 
-            setcookie('user_name', $user['name'], time() + 60, '/');
-            header('Location: ' . BASE_URL . '/../');
-            exit;
+            setcookie('user_id', $user['id'], time() + 7200, '/'); 
+            setcookie('user_name', $user['name'], time() + 7200, '/');
+            if($user["isAdmin"] == 1) {
+                header('Location: ' . BASE_URL . '/../products');
+                exit;
+            } else {
+                header('Location: ' . BASE_URL . '/../');
+                exit;
+            }
+            
         } else {
             $queryDebug = $stmt->queryString;
             set_error_message('Correo o contraseña incorrectos. Consulta ejecutada: ' . $queryDebug);

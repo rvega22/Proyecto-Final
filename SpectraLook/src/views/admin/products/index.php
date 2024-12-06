@@ -1,9 +1,22 @@
 <?php
-    include_once __DIR__.'/../../layouts/header.php';
     include_once __DIR__.'/../../../controllers/ProductController.php';
     $products = index();
 ?>
+<!DOCTYPE html>
+<html lang="Es">
+<head>
+        <meta charset="UTF-8">
+        <title>Spectralook</title>
+        
+        <link rel="stylesheet" href="<?=ASSETS_URL?>/css/style.css">
+        <script src="https://kit.fontawesome.com/fe8d3f6ced.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+    </head>
 
+<body class="body">
     
 <h1 class="admin-prodc">Administrador de Productos</h1>
 
